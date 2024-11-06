@@ -1,0 +1,30 @@
+package MMS.inventory;
+
+import MMS.inventory.model.Drug;
+import MMS.inventory.repository.DrugRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class InventoryApplication implements CommandLineRunner {
+	@Autowired
+	private DrugRepository drugRepository;
+
+	public static void main(String[] args) {
+		SpringApplication.run(InventoryApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		Drug drug = new Drug();
+		drug.setDrugId(1L);
+		drug.setDrugCategory("Tablet");
+		drug.setDrugDescription("For fever");
+		drug.setDrugName("Paracetamol");
+		drug.setDrugPrice(10.0);
+		drug.setDrugQuantity(100);
+		drugRepository.save(drug);
+	}
+}

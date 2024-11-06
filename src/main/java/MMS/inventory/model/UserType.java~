@@ -1,0 +1,2 @@
+package MMS.inventory.model;public enum UserType {
+}
