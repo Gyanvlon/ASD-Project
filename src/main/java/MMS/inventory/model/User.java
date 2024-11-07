@@ -11,12 +11,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
-    private String userName;
-    private String userPassword;
-    private String userRole;
-    private Boolean active;
+    private String name;
+    private String password;
+    private String role;
+    private Boolean status;
     @Enumerated(EnumType.STRING)
-    private UserType userType;
+    private UserType type;
     @Embedded
     private AuditData auditData;
 }

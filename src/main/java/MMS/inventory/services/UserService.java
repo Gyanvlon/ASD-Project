@@ -1,15 +1,14 @@
 package MMS.inventory.services;
 
-import MMS.inventory.model.User;
+import MMS.inventory.DTO.UserDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
-    User findByUsername(String username);
-    User findByEmail(String email);
-    User createUser(User user);
-    User updateUserById(Long userId, User user);
+    UserDto findByUsername(String username);
+    UserDto findByEmail(String email);
+    UserDto createUser(UserDto user);
+    UserDto updateUserById(Long userId, UserDto user);
     void deleteUserById(Long userId);
-    List<User> findAllUsers();
+    List<UserDto> findAllUsers();
 }

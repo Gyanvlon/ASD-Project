@@ -2,6 +2,7 @@ package MMS.inventory.services.Impl;
 
 import MMS.inventory.DTO.DrugDto;
 import MMS.inventory.DTO.mapper.DrugMapper;
+import MMS.inventory.Exception.ResourceNotFoundException;
 import MMS.inventory.model.Drug;
 import MMS.inventory.repository.DrugRepository;
 import MMS.inventory.services.DrugService;
@@ -19,18 +20,22 @@ private DrugMapper drugMapper;
 
     @Override
     public DrugDto getDrugById(Long id) {
-        return drugMapper.toDrugDto(drugRepository.findById(id).get());
+        Drug drug = drugRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Drug not found with id: " + id));
+        return drugMapper.toDrugDto(drug);
     }
 
     @Override
     public DrugDto createDrug(DrugDto drugDto) {
+        if(drugDto == null) {
+            throw new ResourceNotFoundException("Drug cannot be null");
+        }
         Drug drug = drugMapper.toDrug(drugDto);
         return drugMapper.toDrugDto(drugRepository.save(drug));
     }
 
     @Override
     public DrugDto updateDrugById(Long id, DrugDto drugDto) {
-        Drug drugToUpdate = drugRepository.findById(id).get();
+        Drug drugToUpdate = drugRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Drug not found with id: " + id));
         Drug drug = drugMapper.toDrug(drugDto);
         drugToUpdate.setName(drug.getName());
         drugToUpdate.setPrice(drug.getPrice());
@@ -46,6 +51,9 @@ private DrugMapper drugMapper;
 
     @Override
     public void deleteDrugById(Long id) {
+        if(!drugRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Drug not found with id: " + id);
+        }
         drugRepository.deleteById(id);
     }
 

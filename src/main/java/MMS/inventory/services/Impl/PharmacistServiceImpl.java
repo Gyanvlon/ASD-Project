@@ -2,6 +2,7 @@ package MMS.inventory.services.Impl;
 
 import MMS.inventory.DTO.PharmacistDto;
 import MMS.inventory.DTO.mapper.PharmacistMapper;
+import MMS.inventory.Exception.ResourceNotFoundException;
 import MMS.inventory.model.Pharmacist;
 import MMS.inventory.repository.PharmacistRepository;
 import MMS.inventory.services.PharmacistService;
@@ -22,22 +23,31 @@ public class PharmacistServiceImpl implements PharmacistService {
 
     @Override
     public PharmacistDto getPharmacist(Long pharmacistId) {
-        return pharmacistMapper.toPharmacistDto(pharmacistRepository.findById(pharmacistId).get());
+       Pharmacist pharmacist = pharmacistRepository.findById(pharmacistId).orElseThrow(() -> new ResourceNotFoundException("Pharmacist not found with id: " + pharmacistId));
+        return pharmacistMapper.toPharmacistDto(pharmacist);
     }
 
     @Override
     public PharmacistDto getPharmacistByEmail(String email) {
-        return pharmacistMapper.toPharmacistDto(pharmacistRepository.findByEmail(email));
+        Pharmacist pharmacist = pharmacistRepository.findByEmail(email);
+        if(pharmacist == null) {
+            throw new ResourceNotFoundException("Pharmacist not found with email: " + email);
+        }
+
+        return pharmacistMapper.toPharmacistDto(pharmacist);
     }
 
     @Override
     public PharmacistDto createPharmacist(PharmacistDto pharmacist) {
+        if(pharmacist == null) {
+            throw new ResourceNotFoundException("Pharmacist cannot be null");
+        }
         return pharmacistMapper.toPharmacistDto(pharmacistRepository.save(pharmacistMapper.toPharmacist(pharmacist)));
     }
 
     @Override
     public PharmacistDto updatePharmacistById(Long pharmacistId, PharmacistDto pharmacistDto) {
-        Pharmacist pharmacistToUpdate = pharmacistRepository.findById(pharmacistId).get();
+        Pharmacist pharmacistToUpdate = pharmacistRepository.findById(pharmacistId).orElseThrow(() -> new ResourceNotFoundException("Pharmacist not found with id: " + pharmacistId));
         Pharmacist pharmacist = pharmacistMapper.toPharmacist(pharmacistDto);
         pharmacistToUpdate.getGeneralDetail().setName(pharmacist.getGeneralDetail().getName());
         pharmacistToUpdate.getGeneralDetail().setGender(pharmacist.getGeneralDetail().getGender());
@@ -71,6 +81,9 @@ public class PharmacistServiceImpl implements PharmacistService {
 
     @Override
     public void deletePharmacistById(Long pharmacistId) {
+        if (!pharmacistRepository.existsById(pharmacistId)) {
+            throw new ResourceNotFoundException("Pharmacist not found with id: " + pharmacistId);
+        }
         pharmacistRepository.deleteById(pharmacistId);
     }
 

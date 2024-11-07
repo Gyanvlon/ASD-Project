@@ -2,7 +2,6 @@ package MMS.inventory.services.Impl;
 
 import MMS.inventory.DTO.ManagerDto;
 import MMS.inventory.DTO.mapper.ManagerMapper;
-import MMS.inventory.Exception.ResourceNotFoundException;
 import MMS.inventory.model.Manager;
 import MMS.inventory.repository.ManagerResository;
 import MMS.inventory.services.ManagerService;
@@ -23,30 +22,22 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public ManagerDto getManager(Long managerId) {
-        Manager manager = managerRepository.findById(managerId).orElseThrow(() -> new ResourceNotFoundException("Manager not found with id: " + managerId));
-        return managerMapper.toManagerDto(manager);
+        return managerMapper.toManagerDto(managerRepository.findById(managerId).get());
     }
 
     @Override
     public ManagerDto getManagerByEmail(String email) {
-        Manager manager = managerRepository.findByEmail(email);
-        if(manager == null) {
-            throw new ResourceNotFoundException("Manager not found with email: " + email);
-        }
-        return managerMapper.toManagerDto(manager);
+        return managerMapper.toManagerDto(managerRepository.findByEmail(email));
     }
 
     @Override
     public ManagerDto createManager(ManagerDto manager) {
-        if(manager == null) {
-            throw new ResourceNotFoundException("Manager cannot be null");
-        }
         return managerMapper.toManagerDto(managerRepository.save(managerMapper.toManager(manager)));
     }
 
     @Override
     public ManagerDto updateManagerById(Long managerId, ManagerDto managerDto) {
-        Manager managerToUpdate = managerRepository.findById(managerId).orElseThrow(() -> new ResourceNotFoundException("Manager not found with id: " + managerId));
+        Manager managerToUpdate = managerRepository.findById(managerId).get();
         Manager manager = managerMapper.toManager(managerDto);
         managerToUpdate.getGeneralDetail().setName(manager.getGeneralDetail().getName());
         managerToUpdate.getGeneralDetail().setGender(manager.getGeneralDetail().getGender());
@@ -64,7 +55,7 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public ManagerDto patchManagerById(Long managerId, ManagerDto managerDto) {
-        Manager managerToUpdate = managerRepository.findById(managerId).orElseThrow(() -> new ResourceNotFoundException("Manager not found with id: " + managerId));
+        Manager managerToUpdate = managerRepository.findById(managerId).get();
         Manager manager = managerMapper.toManager(managerDto);
         managerToUpdate.getGeneralDetail().setName(manager.getGeneralDetail().getName());
         managerToUpdate.getGeneralDetail().setGender(manager.getGeneralDetail().getGender());
@@ -81,9 +72,6 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public void deleteManagerById(Long managerId) {
-        if(!managerRepository.existsById(managerId)) {
-            throw new ResourceNotFoundException("Manager not found with id: " + managerId);
-        }
         managerRepository.deleteById(managerId);
     }
 
