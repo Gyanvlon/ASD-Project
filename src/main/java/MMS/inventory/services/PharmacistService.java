@@ -1,17 +1,17 @@
 package MMS.inventory.services;
 
-import MMS.inventory.model.Pharmacist;
+import MMS.inventory.DTO.PharmacistDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface PharmacistService {
-    Optional<Pharmacist> getPharmacist(String pharmacistId);
-    Optional<Pharmacist> getPharmacistByEmail(String email);
-    Optional<Pharmacist> createPharmacist(Pharmacist pharmacist);
-    Optional<Pharmacist> updatePharmacistById(Long pharmacistId, Pharmacist pharmacist);
+    PharmacistDto getPharmacist(Long pharmacistId);
+    PharmacistDto getPharmacistByEmail(String email);
+    PharmacistDto createPharmacist(PharmacistDto pharmacist);
+    PharmacistDto updatePharmacistById(Long pharmacistId, PharmacistDto pharmacist);
+    PharmacistDto patchPharmacistById(Long pharmacistId, PharmacistDto pharmacist);
     void deletePharmacistById(Long pharmacistId);
-    Optional<List<Pharmacist>> getAllPharmacists();
+    List<PharmacistDto> getAllPharmacists();
 }
 
 

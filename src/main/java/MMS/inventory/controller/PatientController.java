@@ -1,13 +1,12 @@
 package MMS.inventory.controller;
 
-import MMS.inventory.model.Patient;
+import MMS.inventory.DTO.PatientDto;
 import MMS.inventory.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/patients")
@@ -16,15 +15,15 @@ public class PatientController {
     private PatientService patientService;
 
     @PostMapping
-    public ResponseEntity<Optional<Patient>> createPatient(@RequestBody Patient patient){
+    public ResponseEntity<PatientDto> createPatient(@RequestBody PatientDto patient){
         return ResponseEntity.ok(patientService.createPatient(patient));
     }
     @GetMapping("/{patientId}")
-    public ResponseEntity<Optional<Patient>> getPatient(@PathVariable String patientId){
+    public ResponseEntity<PatientDto> getPatient(@PathVariable Long patientId){
         return ResponseEntity.ok(patientService.getPatient(patientId));
     }
     @PutMapping("/{patientId}")
-    public ResponseEntity<Optional<Patient>> updatePatient(@PathVariable Long patientId, @RequestBody Patient patient){
+    public ResponseEntity<PatientDto> updatePatient(@PathVariable Long patientId, @RequestBody PatientDto patient){
         return ResponseEntity.ok(patientService.updatePatientById(patientId, patient));
     }
     @DeleteMapping("/{patientId}")
@@ -34,7 +33,7 @@ public class PatientController {
     }
 
     @GetMapping
-    public ResponseEntity<Optional<List<Patient>>> getAllPatients(){
+    public ResponseEntity<List<PatientDto>> getAllPatients(){
         return ResponseEntity.ok(patientService.getAllPatients());
     }
 

@@ -3,17 +3,23 @@ package MMS.inventory.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Manager {
+public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long managerId;
-    private String managerName;
-    private String managerEmail;
+    private Long patientId;
+    private String name;
+    private String phone;
+    private String email;
+    private String gender;
+    private Date dob;
     @Embedded
     private Address address;
-//    private
+    @Embedded
+    private AuditData auditData;
+
 }

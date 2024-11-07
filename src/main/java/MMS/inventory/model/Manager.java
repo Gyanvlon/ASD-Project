@@ -11,11 +11,6 @@ public class Manager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long managerId;
-    private String managerName;
-    private String managerEmail;
     @Embedded
-    private Address address;
-    @Embedded
-    private AuditData auditData;
-//    private
+    private GeneralDetail generalDetail;
 }

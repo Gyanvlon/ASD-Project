@@ -1,0 +1,16 @@
+package MMS.inventory.services;
+
+import MMS.inventory.model.Manager;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface ManagerService {
+    Manager getManager(Long managerId);
+    Manager getManagerByEmail(String email);
+    Manager createManager(Manager manager);
+    Manager updateManagerById(Long managerId, Manager manager);
+    Manager patchManagerById(Long managerId, Manager manager);
+    void deleteManagerById(Long managerId);
+    List<Manager> getAllManagers();
+}

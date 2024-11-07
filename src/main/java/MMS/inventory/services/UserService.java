@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    Optional<User> findByUsername(String username);
-    Optional<User> findByEmail(String email);
-    Optional<User> createUser(User user);
-    Optional<User> updateUserById(Long userId, User user);
+    User findByUsername(String username);
+    User findByEmail(String email);
+    User createUser(User user);
+    User updateUserById(Long userId, User user);
     void deleteUserById(Long userId);
-    Optional<List<User>> findAllUsers();
+    List<User> findAllUsers();
 }

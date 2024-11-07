@@ -1,5 +1,6 @@
 package MMS.inventory.controller;
-import MMS.inventory.DTO.ManagerDto;
+
+import MMS.inventory.model.Manager;
 import MMS.inventory.services.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/managers")
@@ -14,19 +16,19 @@ public class ManagerController {
     @Autowired
     private ManagerService managerService;
     @PostMapping
-    public ResponseEntity<ManagerDto> createManager(@RequestBody ManagerDto manager) {
+    public ResponseEntity<Manager> createManager(@RequestBody Manager manager) {
         return new ResponseEntity<>(managerService.createManager(manager), HttpStatus.CREATED);
     }
     @GetMapping("/{managerId}")
-    public ResponseEntity<ManagerDto> getManager(@RequestParam  Long managerId) {
+    public ResponseEntity<Manager> getManager(@RequestParam  Long managerId) {
         return new ResponseEntity<>(managerService.getManager(managerId), HttpStatus.OK);
     }
     @GetMapping("/{email}")
-    public ResponseEntity<ManagerDto> getManagerByEmail(String email) {
+    public ResponseEntity<Manager> getManagerByEmail(String email) {
         return new ResponseEntity<>(managerService.getManagerByEmail(email), HttpStatus.OK);
     }
     @PutMapping("/{managerId}")
-    public ResponseEntity<ManagerDto> updateManagerById(@PathVariable Long managerId, @RequestBody ManagerDto manager) {
+    public ResponseEntity<Manager> updateManagerById(@PathVariable Long managerId, @RequestBody Manager manager) {
         return new ResponseEntity<>(managerService.updateManagerById(managerId, manager), HttpStatus.OK);
     }
     @DeleteMapping("/{managerId}")
@@ -35,7 +37,7 @@ public class ManagerController {
         return new ResponseEntity<>("Manager with id " + managerId + " deleted successfully", HttpStatus.OK);
     }
     @GetMapping
-    public ResponseEntity<List<ManagerDto>> getAllManagers() {
+    public ResponseEntity<List<Manager>> getAllManagers() {
         return new ResponseEntity<>(managerService.getAllManagers(), HttpStatus.OK);
     }
 }

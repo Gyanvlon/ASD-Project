@@ -12,14 +12,8 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long patientId;
-    private String name;
-    private String phone;
-    private String email;
-    private String gender;
     private Date dob;
     @Embedded
-    private Address address;
-    @Embedded
-    private AuditData auditData;
+    private GeneralDetail generalDetail;
 
 }

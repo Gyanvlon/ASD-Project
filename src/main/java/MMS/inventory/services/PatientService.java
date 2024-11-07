@@ -1,15 +1,13 @@
 package MMS.inventory.services;
-
-import MMS.inventory.model.Patient;
-
+import MMS.inventory.DTO.PatientDto;
 import java.util.List;
-import java.util.Optional;
 
 public interface PatientService {
-    Optional<Patient> getPatient(String patientId);
-    Optional<Patient> getPatientByEmail(String email);
-    Optional<Patient> createPatient(Patient patient);
-    Optional<Patient> updatePatientById(Long patientId, Patient patient);
+    PatientDto getPatient(Long patientId);
+    PatientDto getPatientByEmail(String email);
+    PatientDto createPatient(PatientDto patient);
+    PatientDto updatePatientById(Long patientId, PatientDto patient);
+    PatientDto patchPatientById(Long patientId, PatientDto patient);
     void deletePatientById(Long patientId);
-    Optional<List<Patient>> getAllPatients();
+    List<PatientDto> getAllPatients();
 }
