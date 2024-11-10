@@ -7,19 +7,18 @@ import MMS.inventory.model.Manager;
 import MMS.inventory.repository.ManagerResository;
 import MMS.inventory.services.ManagerService;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 @Transactional
 public class ManagerServiceImpl implements ManagerService {
-    @Autowired
-    private ManagerResository managerRepository;
-    @Autowired
-    private ManagerMapper managerMapper;
+    private final ManagerResository managerRepository;
+    private final ManagerMapper managerMapper;
 
     @Override
     public ManagerDto getManager(Long managerId) {
@@ -27,14 +26,14 @@ public class ManagerServiceImpl implements ManagerService {
         return managerMapper.toManagerDto(manager);
     }
 
-    @Override
-    public ManagerDto getManagerByEmail(String email) {
-        Manager manager = managerRepository.findByEmail(email);
-        if(manager == null) {
-            throw new ResourceNotFoundException("Manager not found with email: " + email);
-        }
-        return managerMapper.toManagerDto(manager);
-    }
+//    @Override
+//    public ManagerDto getManagerByEmail(String email) {
+//        Manager manager = managerRepository.findByEmail(email);
+//        if(manager == null) {
+//            throw new ResourceNotFoundException("Manager not found with email: " + email);
+//        }
+//        return managerMapper.toManagerDto(manager);
+//    }
 
     @Override
     public ManagerDto createManager(ManagerDto manager) {

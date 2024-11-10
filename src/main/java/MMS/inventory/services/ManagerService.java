@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ManagerService {
     ManagerDto getManager(Long managerId);
-    ManagerDto getManagerByEmail(String email);
+//    ManagerDto getManagerByEmail(String email);
     ManagerDto createManager(ManagerDto manager);
     ManagerDto updateManagerById(Long managerId, ManagerDto manager);
     ManagerDto patchManagerById(Long managerId, ManagerDto manager);

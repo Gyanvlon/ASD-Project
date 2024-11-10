@@ -7,7 +7,7 @@ import MMS.inventory.model.Doctor;
 import MMS.inventory.repository.DoctorRepository;
 import MMS.inventory.services.DoctorService;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,22 +15,22 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class DoctorServiceImpl implements DoctorService {
-    @Autowired
-    private DoctorRepository doctorRepository;
-    @Autowired
-    private DoctorMapper doctorMapper;
+    private final DoctorRepository doctorRepository;
+    private final DoctorMapper doctorMapper;
+
     @Override
     public DoctorDto getDoctor(Long doctorId) {
         Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(() -> new ResourceNotFoundException("Doctor not found with id: " + doctorId));
         return doctorMapper.toDoctorDto(doctor);
     }
 
-    @Override
-    public DoctorDto getDoctorByEmail(String email) {
-        Doctor doctor = doctorRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Doctor not found with email: " + email));
-        return doctorMapper.toDoctorDto(doctor);
-    }
+//    @Override
+//    public DoctorDto getDoctorByEmail(String email) {
+//        Doctor doctor = doctorRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Doctor not found with email: " + email));
+//        return doctorMapper.toDoctorDto(doctor);
+//    }
 
     @Override
     public DoctorDto createDoctor(DoctorDto doctor) {

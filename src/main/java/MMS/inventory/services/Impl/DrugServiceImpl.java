@@ -6,20 +6,22 @@ import MMS.inventory.Exception.ResourceNotFoundException;
 import MMS.inventory.model.Drug;
 import MMS.inventory.repository.DrugRepository;
 import MMS.inventory.services.DrugService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
+@Transactional
 public class DrugServiceImpl implements DrugService {
-@Autowired
-private DrugRepository drugRepository;
-@Autowired
-private DrugMapper drugMapper;
+private final DrugRepository drugRepository;
+private final DrugMapper drugMapper;
 
     @Override
-    public DrugDto getDrugById(Long id) {
+    public DrugDto getDrugById(UUID id) {
         Drug drug = drugRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Drug not found with id: " + id));
         return drugMapper.toDrugDto(drug);
     }
@@ -29,12 +31,11 @@ private DrugMapper drugMapper;
         if(drugDto == null) {
             throw new ResourceNotFoundException("Drug cannot be null");
         }
-        Drug drug = drugMapper.toDrug(drugDto);
-        return drugMapper.toDrugDto(drugRepository.save(drug));
+        return drugMapper.toDrugDto(drugRepository.save(drugMapper.toDrug(drugDto)));
     }
 
     @Override
-    public DrugDto updateDrugById(Long id, DrugDto drugDto) {
+    public DrugDto updateDrugById(UUID id, DrugDto drugDto) {
         Drug drugToUpdate = drugRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Drug not found with id: " + id));
         Drug drug = drugMapper.toDrug(drugDto);
         drugToUpdate.setName(drug.getName());
@@ -50,7 +51,42 @@ private DrugMapper drugMapper;
     }
 
     @Override
-    public void deleteDrugById(Long id) {
+    public DrugDto patchDrugById(UUID id, DrugDto drugDto) {
+        Drug drugToUpdate = drugRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Drug not found with id: " + id));
+        Drug drug = drugMapper.toDrug(drugDto);
+        // Partial updates
+        if (drugDto.getDrugName() != null) {
+            drugToUpdate.setName(drugDto.getDrugName());
+        }
+        if (drugDto.getDrugPrice() != null) {
+            drugToUpdate.setPrice(drugDto.getDrugPrice());
+        }
+        if (drugDto.getDrugQuantity() != null) {
+            drugToUpdate.setQuantity(drugDto.getDrugQuantity());
+        }
+        if (drugDto.getDrugCategory() != null) {
+            drugToUpdate.setCategory(drugDto.getDrugCategory());
+        }
+        if (drugDto.getDrugDescription() != null) {
+            drugToUpdate.setDescription(drugDto.getDrugDescription());
+        }
+        if (drugDto.getDrugBatchNumber() != null) {
+            drugToUpdate.setBatchNumber(drugDto.getDrugBatchNumber());
+        }
+        if (drugDto.getDrugExpiryDate() != null) {
+            drugToUpdate.setExpiryDate(drugDto.getDrugExpiryDate());
+        }
+        if (drugDto.getDrugManufactureDate() != null) {
+            drugToUpdate.setManufactureDate(drugDto.getDrugManufactureDate());
+        }
+        if (drugDto.getDrugManufacturer() != null) {
+            drugToUpdate.setManufacturer(drugDto.getDrugManufacturer());
+        }
+        return drugMapper.toDrugDto(drugRepository.save(drugToUpdate));
+    }
+
+    @Override
+    public void deleteDrugById(UUID id) {
         if(!drugRepository.existsById(id)) {
             throw new ResourceNotFoundException("Drug not found with id: " + id);
         }

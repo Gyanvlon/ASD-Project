@@ -6,19 +6,18 @@ import MMS.inventory.Exception.ResourceNotFoundException;
 import MMS.inventory.model.User;
 import MMS.inventory.repository.UserRepository;
 import MMS.inventory.services.UserService;
-import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
-@Transactional
 public class UserServiceImpl implements UserService {
-    private final UserRepository userRepository;
-    private final UserMapper userMapper;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private UserMapper userMapper;
 
 //    @Override
 //    public UserDto findByUsername(String username) {

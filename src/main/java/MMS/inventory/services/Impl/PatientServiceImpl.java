@@ -7,17 +7,16 @@ import MMS.inventory.model.Patient;
 import MMS.inventory.repository.PatientRepository;
 import MMS.inventory.services.PatientService;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 @Transactional
+@AllArgsConstructor
 public class PatientServiceImpl implements PatientService {
-    @Autowired
-    private PatientRepository patientRepository;
-    @Autowired
-    private PatientMapper patientMapper;
+    private final PatientRepository patientRepository;
+    private final PatientMapper patientMapper;
 
     @Override
     public PatientDto getPatient(Long patientId) {
@@ -25,14 +24,14 @@ public class PatientServiceImpl implements PatientService {
         return patientMapper.toPatientDto(patient);
     }
 
-    @Override
-    public PatientDto getPatientByEmail(String email) {
-       Patient patient = patientRepository.findByEmail(email);
-         if(patient == null) {
-              throw new ResourceNotFoundException("Patient not found with email: " + email);
-         }
-        return patientMapper.toPatientDto(patient);
-    }
+//    @Override
+//    public PatientDto getPatientByEmail(String email) {
+//       Patient patient = patientRepository.findByEmail(email);
+//         if(patient == null) {
+//              throw new ResourceNotFoundException("Patient not found with email: " + email);
+//         }
+//        return patientMapper.toPatientDto(patient);
+//    }
 
     @Override
     public PatientDto createPatient(PatientDto patient) {

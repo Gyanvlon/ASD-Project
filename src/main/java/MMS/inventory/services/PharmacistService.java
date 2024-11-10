@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PharmacistService {
     PharmacistDto getPharmacist(Long pharmacistId);
-    PharmacistDto getPharmacistByEmail(String email);
+//    PharmacistDto getPharmacistByEmail(String email);
     PharmacistDto createPharmacist(PharmacistDto pharmacist);
     PharmacistDto updatePharmacistById(Long pharmacistId, PharmacistDto pharmacist);
     PharmacistDto patchPharmacistById(Long pharmacistId, PharmacistDto pharmacist);
