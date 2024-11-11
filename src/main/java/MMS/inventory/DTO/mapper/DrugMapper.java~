@@ -11,6 +11,7 @@ public DrugDto toDrugDto(Drug drug) {
         return null;
     }
     DrugDto drugDto = new DrugDto();
+    drugDto.setDrugId(drug.getDrugId());
     drugDto.setDrugName(drug.getName());
     drugDto.setDrugDescription(drug.getDescription());
     drugDto.setDrugManufacturer(drug.getManufacturer());

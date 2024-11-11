@@ -4,6 +4,7 @@ import MMS.inventory.DTO.PharmacistDto;
 import MMS.inventory.services.PharmacistService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ public class PharmacistController {
     private final PharmacistService pharmacistService;
     @PostMapping
     @Operation(summary = "Register Pharmacist", description = "Register a new Pharmacist")
-    public ResponseEntity<PharmacistDto> createPharmacist(@RequestBody PharmacistDto pharmacist) {
+    public ResponseEntity<PharmacistDto> createPharmacist(@Valid @RequestBody PharmacistDto pharmacist) {
         return new ResponseEntity<>(pharmacistService.createPharmacist(pharmacist), HttpStatus.CREATED);
     }
     @Operation(summary = "Get a Pharmacist by ID", description = "Get a single Pharmacist by their ID.")
@@ -32,7 +33,7 @@ public class PharmacistController {
 //    }
     @PutMapping("/{pharmacistId}")
     @Operation(summary = "Update a Pharmacist by ID", description = "Update a single Pharmacist by their ID.")
-    public ResponseEntity<PharmacistDto> updatePharmacistById(@PathVariable Long pharmacistId, @RequestBody PharmacistDto pharmacist) {
+    public ResponseEntity<PharmacistDto> updatePharmacistById(@PathVariable Long pharmacistId, @Valid @RequestBody PharmacistDto pharmacist) {
         return new ResponseEntity<>(pharmacistService.updatePharmacistById(pharmacistId, pharmacist), HttpStatus.OK);
     }
     @DeleteMapping("/{pharmacistId}")

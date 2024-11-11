@@ -3,7 +3,6 @@ import MMS.inventory.DTO.DoctorDto;
 import MMS.inventory.services.DoctorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,7 @@ public class DoctorController {
     private final DoctorService doctorService;
     @PostMapping
     @Operation(summary = "Register Doctor", description = "Register a new Doctor")
-    public ResponseEntity<DoctorDto> createDoctor(@Valid @RequestBody DoctorDto doctor) {
+    public ResponseEntity<DoctorDto> createDoctor( @RequestBody DoctorDto doctor) {
         return new ResponseEntity<>(doctorService.createDoctor(doctor), HttpStatus.CREATED);
     }
     @GetMapping("/{doctorId}")
@@ -33,7 +32,7 @@ public class DoctorController {
 //    }
     @Operation(summary = "Update a doctor by ID", description = "Update a single doctor by their ID.")
     @PutMapping("/{doctorId}")
-    public ResponseEntity<DoctorDto> updateDoctorById(@Valid @PathVariable Long doctorId, @RequestBody DoctorDto doctor) {
+    public ResponseEntity<DoctorDto> updateDoctorById(@PathVariable Long doctorId, @RequestBody DoctorDto doctor) {
         return new ResponseEntity<>(doctorService.updateDoctorById(doctorId, doctor), HttpStatus.OK);
     }
     @DeleteMapping("/{doctorId}")

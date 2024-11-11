@@ -3,7 +3,7 @@ package MMS.inventory.services.Impl;
 import MMS.inventory.DTO.DrugDto;
 import MMS.inventory.DTO.mapper.DrugMapper;
 import MMS.inventory.Exception.ResourceNotFoundException;
-import MMS.inventory.model.Drug;
+import MMS.inventory.domain.Drug;
 import MMS.inventory.repository.DrugRepository;
 import MMS.inventory.services.DrugService;
 import jakarta.transaction.Transactional;
@@ -54,7 +54,6 @@ private final DrugMapper drugMapper;
     public DrugDto patchDrugById(UUID id, DrugDto drugDto) {
         Drug drugToUpdate = drugRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Drug not found with id: " + id));
         Drug drug = drugMapper.toDrug(drugDto);
-        // Partial updates
         if (drugDto.getDrugName() != null) {
             drugToUpdate.setName(drugDto.getDrugName());
         }

@@ -1,10 +1,13 @@
 package MMS.inventory.repository;
 
-import MMS.inventory.model.User;
+import MMS.inventory.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-//    User findByEmail(String email);
+import java.util.Optional;
+import java.util.UUID;
+
+public interface UserRepository extends JpaRepository<User, UUID> {
+    Optional<User> findByEmail(String email);
 //    User findByUsername(String username);
 
 }

@@ -1,19 +1,20 @@
-package MMS.inventory.model;
+package MMS.inventory.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Date;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
-public class Pharmacist {
+public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pharmacistId;
-    @NotBlank(message = "Name is required")
-    private String pharmacyName;
+    private Long patientId;
+    private Date dob;
     @Embedded
     private GeneralDetail generalDetail;
+
 }

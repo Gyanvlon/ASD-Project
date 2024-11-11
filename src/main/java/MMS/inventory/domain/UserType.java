@@ -1,4 +1,4 @@
-package MMS.inventory.model;
+package MMS.inventory.domain;
 
 public enum UserType {
     ADMIN, MANAGER, PHARMACIST, PATIENT, DOCTOR

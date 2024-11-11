@@ -1,4 +1,4 @@
-package MMS.inventory.model;
+package MMS.inventory.domain;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EntityListeners;
@@ -10,7 +10,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-
 @Embeddable
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)

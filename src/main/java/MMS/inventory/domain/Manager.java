@@ -1,4 +1,4 @@
-package MMS.inventory.model;
+package MMS.inventory.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;

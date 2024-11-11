@@ -3,7 +3,7 @@ package MMS.inventory.services.Impl;
 import MMS.inventory.DTO.ManagerDto;
 import MMS.inventory.DTO.mapper.ManagerMapper;
 import MMS.inventory.Exception.ResourceNotFoundException;
-import MMS.inventory.model.Manager;
+import MMS.inventory.domain.Manager;
 import MMS.inventory.repository.ManagerResository;
 import MMS.inventory.services.ManagerService;
 import jakarta.transaction.Transactional;

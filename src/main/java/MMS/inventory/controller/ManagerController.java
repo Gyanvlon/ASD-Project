@@ -2,6 +2,7 @@ package MMS.inventory.controller;
 import MMS.inventory.DTO.ManagerDto;
 import MMS.inventory.services.ManagerService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class ManagerController {
     private final ManagerService managerService;
     @PostMapping
     @Operation(summary = "Register Manager", description = "Register a new Manager")
-    public ResponseEntity<ManagerDto> createManager(@RequestBody ManagerDto manager) {
+    public ResponseEntity<ManagerDto> createManager(@Valid @RequestBody ManagerDto manager) {
         return new ResponseEntity<>(managerService.createManager(manager), HttpStatus.CREATED);
     }
     @GetMapping("/{managerId}")
@@ -30,7 +31,7 @@ public class ManagerController {
 //    }
     @PutMapping("/{managerId}")
     @Operation(summary = "Update a Manager by ID", description = "Update a single Manager by their ID.")
-    public ResponseEntity<ManagerDto> updateManagerById(@PathVariable Long managerId, @RequestBody ManagerDto manager) {
+    public ResponseEntity<ManagerDto> updateManagerById(@PathVariable Long managerId, @Valid @RequestBody ManagerDto manager) {
         return new ResponseEntity<>(managerService.updateManagerById(managerId, manager), HttpStatus.OK);
     }
     @DeleteMapping("/{managerId}")

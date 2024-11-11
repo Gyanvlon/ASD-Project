@@ -1,7 +1,8 @@
-package MMS.inventory.model;
+package MMS.inventory.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
@@ -17,5 +18,6 @@ public class Address {
     @NotBlank(message = "Country is required")
     private String country;
     @NotBlank(message = "Zip Code is required and must be a number")
+    @Pattern(regexp = "\\d+", message = "Zip Code must be a number.")
     private Integer zipCode;
 }

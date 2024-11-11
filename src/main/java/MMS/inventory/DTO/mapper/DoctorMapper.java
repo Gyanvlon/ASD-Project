@@ -1,7 +1,7 @@
 package MMS.inventory.DTO.mapper;
 
 import MMS.inventory.DTO.DoctorDto;
-import MMS.inventory.model.Doctor;
+import MMS.inventory.domain.Doctor;
 import org.springframework.stereotype.Component;
 
 @Component

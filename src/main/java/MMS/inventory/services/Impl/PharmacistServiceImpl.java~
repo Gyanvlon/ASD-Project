@@ -7,18 +7,18 @@ import MMS.inventory.model.Pharmacist;
 import MMS.inventory.repository.PharmacistRepository;
 import MMS.inventory.services.PharmacistService;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
+@AllArgsConstructor
 public class PharmacistServiceImpl implements PharmacistService {
-    @Autowired
-    private PharmacistRepository pharmacistRepository;
-    @Autowired
-    private PharmacistMapper pharmacistMapper;
+    private final PharmacistRepository pharmacistRepository;
+    private final PharmacistMapper pharmacistMapper;
 
     @Override
     public PharmacistDto getPharmacist(Long pharmacistId) {

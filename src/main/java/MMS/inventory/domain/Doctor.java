@@ -1,16 +1,19 @@
-package MMS.inventory.model;
+package MMS.inventory.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
-public class Pharmacist {
+public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pharmacistId;
-    @Embedded
+    private Long doctorId;
+    private String specialization;
+    private String experience;
+   @Embedded
     private GeneralDetail generalDetail;
 }

@@ -4,6 +4,7 @@ import MMS.inventory.DTO.PatientDto;
 import MMS.inventory.services.PatientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class PatientController {
     private final PatientService patientService;
     @PostMapping
     @Operation(summary = "Register Patient", description = "Register a new Patient")
-    public ResponseEntity<PatientDto> createPatient(@RequestBody PatientDto patient){
+    public ResponseEntity<PatientDto> createPatient(@Valid @RequestBody PatientDto patient){
         return ResponseEntity.ok(patientService.createPatient(patient));
     }
     @GetMapping("/{patientId}")
@@ -27,7 +28,7 @@ public class PatientController {
     }
     @PutMapping("/{patientId}")
     @Operation(summary = "Update a Patient by ID", description = "Update a single Patient by their ID.")
-    public ResponseEntity<PatientDto> updatePatient(@PathVariable Long patientId, @RequestBody PatientDto patient){
+    public ResponseEntity<PatientDto> updatePatient(@PathVariable Long patientId,@Valid @RequestBody PatientDto patient){
         return ResponseEntity.ok(patientService.updatePatientById(patientId, patient));
     }
     @DeleteMapping("/{patientId}")

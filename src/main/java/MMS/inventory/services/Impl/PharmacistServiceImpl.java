@@ -3,7 +3,7 @@ package MMS.inventory.services.Impl;
 import MMS.inventory.DTO.PharmacistDto;
 import MMS.inventory.DTO.mapper.PharmacistMapper;
 import MMS.inventory.Exception.ResourceNotFoundException;
-import MMS.inventory.model.Pharmacist;
+import MMS.inventory.domain.Pharmacist;
 import MMS.inventory.repository.PharmacistRepository;
 import MMS.inventory.services.PharmacistService;
 import jakarta.transaction.Transactional;
