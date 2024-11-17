@@ -11,8 +11,8 @@
 	<groupId>MMS </groupId>
 	<artifactId>inventory</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>inventory</name>
-	<description>This module provide inventory for MMS( Medication Management System)</description>
+	<name>MRTS</name>
+	<description>Medical Record Tracking System (MRTS) is a web application that allows users to manage own medical records, track medications, prescriptions and other health-related information. Also, It provides the ability to share the information with doctors users and Post health related problems. </description>
 	<url/>
 	<licenses>
 		<license/>
@@ -75,9 +75,22 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.5</version>
+		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
