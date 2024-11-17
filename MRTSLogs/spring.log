@@ -1,0 +1,30 @@
+2024-11-17T16:03:25.226-06:00  INFO 14516 --- [main] MRTS.MRTSApplication                     : Starting MRTSApplication using Java 21.0.2 with PID 14516 (F:\git\ASD\ASD-Project\target\classes started by gyanv in F:\git\ASD\ASD-Project)
+2024-11-17T16:03:25.228-06:00  INFO 14516 --- [main] MRTS.MRTSApplication                     : No active profile set, falling back to 1 default profile: "default"
+2024-11-17T16:03:26.348-06:00  INFO 14516 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-17T16:03:26.422-06:00  INFO 14516 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 6 JPA repository interfaces.
+2024-11-17T16:03:27.305-06:00  INFO 14516 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-11-17T16:03:27.319-06:00  INFO 14516 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-17T16:03:27.319-06:00  INFO 14516 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-17T16:03:27.386-06:00  INFO 14516 --- [main] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring embedded WebApplicationContext
+2024-11-17T16:03:27.387-06:00  INFO 14516 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2104 ms
+2024-11-17T16:03:27.704-06:00  WARN 14516 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-17T16:03:27.754-06:00  INFO 14516 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-17T16:03:28.113-06:00  INFO 14516 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@18692e80
+2024-11-17T16:03:28.115-06:00  INFO 14516 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-17T16:03:28.215-06:00  INFO 14516 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-17T16:03:28.283-06:00  INFO 14516 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-17T16:03:28.321-06:00  INFO 14516 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-17T16:03:28.699-06:00  INFO 14516 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-17T16:03:28.796-06:00  WARN 14516 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-17T16:03:28.797-06:00  WARN 14516 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-11-17T16:03:30.048-06:00  INFO 14516 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-17T16:03:31.167-06:00  INFO 14516 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17T16:03:31.717-06:00  INFO 14516 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-17T16:03:32.395-06:00  INFO 14516 --- [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-17T16:03:32.396-06:00  WARN 14516 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-17T16:03:32.988-06:00  INFO 14516 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 16 endpoints beneath base path '/actuator'
+2024-11-17T16:03:33.832-06:00  INFO 14516 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api/v1'
+2024-11-17T16:03:33.848-06:00  INFO 14516 --- [main] MRTS.MRTSApplication                     : Started MRTSApplication in 9.177 seconds (process running for 9.925)
+2024-11-17T16:03:34.378-06:00  INFO 14516 --- [RMI TCP Connection(2)-172.31.144.1] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-17T16:03:34.378-06:00  INFO 14516 --- [RMI TCP Connection(2)-172.31.144.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-17T16:03:34.380-06:00  INFO 14516 --- [RMI TCP Connection(2)-172.31.144.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
