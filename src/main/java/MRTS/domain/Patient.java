@@ -20,10 +20,13 @@ public class Patient extends AuditData{
     @Embedded
     private GeneralDetail generalDetail;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Prescription prescription;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ToString.Exclude
     private User user;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id", referencedColumnName = "addressId")
     private Address address;
+
 }

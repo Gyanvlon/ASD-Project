@@ -17,9 +17,9 @@ public class PatientDto {
     @NotBlank(message = "Patient Email is required")
     @Email(message = "Patient Email is invalid")
     private String patientEmail;
-    @NotBlank(message = "Patient Phone is required")
+    @NotNull(message = "Patient Phone is required")
     @Pattern(regexp = "^[0-9]{10}$", message = "Patient Phone is invalid")
-    private String patientPhone;
+    private Long patientPhone;
     @NotBlank(message = "Patient Gender is required")
     private String patientGender;
     @NotNull(message = "Patient DOB is required")

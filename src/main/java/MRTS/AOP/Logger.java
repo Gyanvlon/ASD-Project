@@ -60,11 +60,63 @@ public class Logger {
     }
 
     @Around("execution(* MRTS.services.Impl.PharmacyServiceImpl.*(..))")
-    public Object aroundPharmacist(ProceedingJoinPoint joinpoint) throws Throwable {
+    public Object aroundPharmacy(ProceedingJoinPoint joinpoint) throws Throwable {
         return logAround(joinpoint);
     }
     @AfterThrowing(value = "execution(* MRTS.services.Impl.PharmacyServiceImpl.*(..))",throwing = "ex")
+    public void logPharmacyException(JoinPoint joinPoint, Exception ex) {
+        log.error(joinPoint.getSignature()+ " An exception happened due to : "+ex.getMessage());
+    }
+
+    @Around("execution(* MRTS.services.Impl.HospitalServiceImpl.*(..))")
+    public Object aroundHospital(ProceedingJoinPoint joinpoint) throws Throwable {
+        return logAround(joinpoint);
+    }
+    @AfterThrowing(value = "execution(* MRTS.services.Impl.HospitalServiceImpl.*(..))",throwing = "ex")
+    public void logHospitalException(JoinPoint joinPoint, Exception ex) {
+        log.error(joinPoint.getSignature()+ " An exception happened due to : "+ex.getMessage());
+    }
+
+    @Around("execution(* MRTS.services.Impl.LabTechnicianServiceImpl.*(..))")
+    public Object aroundLabTechnician(ProceedingJoinPoint joinpoint) throws Throwable {
+        return logAround(joinpoint);
+    }
+    @AfterThrowing(value = "execution(* MRTS.services.Impl.LabTechnicianServiceImpl.*(..))",throwing = "ex")
+    public void logLabTechnicianException(JoinPoint joinPoint, Exception ex) {
+        log.error(joinPoint.getSignature()+ " An exception happened due to : "+ex.getMessage());
+    }
+    @Around("execution(* MRTS.services.Impl.PharmacistServiceImpl.*(..))")
+    public Object aroundPharmacist(ProceedingJoinPoint joinpoint) throws Throwable {
+        return logAround(joinpoint);
+    }
+    @AfterThrowing(value = "execution(* MRTS.services.Impl.PharmacistServiceImpl.*(..))",throwing = "ex")
     public void logPharmacistException(JoinPoint joinPoint, Exception ex) {
+        log.error(joinPoint.getSignature()+ " An exception happened due to : "+ex.getMessage());
+    }
+    @Around("execution(* MRTS.services.Impl.LabServiceImpl.*(..))")
+    public Object aroundLab(ProceedingJoinPoint joinpoint) throws Throwable {
+        return logAround(joinpoint);
+    }
+    @AfterThrowing(value = "execution(* MRTS.services.Impl.LabServiceImpl.*(..))",throwing = "ex")
+    public void logLabException(JoinPoint joinPoint, Exception ex) {
+        log.error(joinPoint.getSignature()+ " An exception happened due to : "+ex.getMessage());
+    }
+
+    @Around("execution(* MRTS.services.Impl.ReportServiceImpl.*(..))")
+    public Object aroundReport(ProceedingJoinPoint joinpoint) throws Throwable {
+        return logAround(joinpoint);
+    }
+    @AfterThrowing(value = "execution(* MRTS.services.Impl.ReportServiceImpl.*(..))",throwing = "ex")
+    public void logReportException(JoinPoint joinPoint, Exception ex) {
+        log.error(joinPoint.getSignature()+ " An exception happened due to : "+ex.getMessage());
+    }
+
+    @Around("execution(* MRTS.services.Impl.PrescriptionServiceImpl.*(..))")
+    public Object aroundPrescription(ProceedingJoinPoint joinpoint) throws Throwable {
+        return logAround(joinpoint);
+    }
+    @AfterThrowing(value = "execution(* MRTS.services.Impl.PrescriptionServiceImpl.*(..))",throwing = "ex")
+    public void logPrescriptionException(JoinPoint joinPoint, Exception ex) {
         log.error(joinPoint.getSignature()+ " An exception happened due to : "+ex.getMessage());
     }
 

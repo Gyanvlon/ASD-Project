@@ -1,5 +1,6 @@
 package MRTS.services.Impl;
 
+import MRTS.DTO.LabTechnicianDto;
 import MRTS.DTO.LogInDto;
 import MRTS.DTO.UserDto;
 import MRTS.DTO.UserResponse;
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService {
     private final ManagerResository managerRepository;
     private final PatientRepository patientRepository;
     private final PharmacistRepository pharmacistRepository;
+    private final LabTechnicianRepository labTechnicianRepository;
 
     @Override
     public UserResponse findByEmail(String email) {
@@ -96,6 +98,16 @@ public class UserServiceImpl implements UserService {
             pharmacist.setUser(existingUser);
             Pharmacist savePharmacist =  pharmacistRepository.save(pharmacist);
             userId = savePharmacist.getPharmacistId();
+        }
+        if(UserType.LAB_TECHNICIAN.equals(user.getRole())){
+            LabTechnician labTechnician = new LabTechnician();
+            GeneralDetail generalDetail = new GeneralDetail();
+            generalDetail.setEmail(existingUser.getEmail());
+            generalDetail.setName(existingUser.getFullName());
+            labTechnician.setGeneralDetail(generalDetail);
+            labTechnician.setUser(existingUser);
+            LabTechnician saveLabTechnician =  labTechnicianRepository.save(labTechnician);
+            userId = saveLabTechnician.getLabTechnicianId();
         }
          userRepository.updateByUserId(existingUser.getId(), userId);
         return userResponseMapper.toUserResponse(existingUser, userId);

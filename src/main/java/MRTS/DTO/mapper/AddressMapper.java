@@ -7,9 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class AddressMapper {
     public AddressDto toAddressDto(Address address) {
-        if(address == null) {
-            return null;
-        }
         AddressDto addressDto = new AddressDto();
         addressDto.setAddressId(address.getAddressId());
         addressDto.setAddressLine1(address.getAddressLine1());
@@ -22,9 +19,6 @@ public class AddressMapper {
     }
 
     public Address toAddress(AddressDto addressDto) {
-        if(addressDto == null) {
-            return null;
-        }
         Address address = new Address();
         address.setAddressLine1(addressDto.getAddressLine1());
         address.setAddressLine2(addressDto.getAddressLine2());

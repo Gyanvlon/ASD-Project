@@ -11,4 +11,5 @@ public interface DoctorService {
     DoctorDto patchDoctorById(UUID doctorId, DoctorDto doctor);
     void deleteDoctorById(UUID doctorId);
     List<DoctorDto> getAllDoctors();
+    List<DoctorDto> getDoctorByName(String doctorName);
 }

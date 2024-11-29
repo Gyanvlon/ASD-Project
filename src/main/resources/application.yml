@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
@@ -14,6 +14,7 @@ spring:
 server:
   servlet:
     context-path: /api/v1
+  port: 8090
 springdoc:
   api-docs:
     path: /docs

@@ -48,4 +48,9 @@ public class PharmacistController {
     public ResponseEntity<List<PharmacistDto>> getAllPharmacists() {
         return new ResponseEntity<>(pharmacistService.getAllPharmacists(), HttpStatus.OK);
     }
+    @GetMapping("/name/{pharmacistName}")
+    @Operation(summary = "Get a Pharmacist by Name", description = "Get a single Pharmacist by their Name.")
+    public ResponseEntity<List<PharmacistDto>> getPharmacistByName(@PathVariable String pharmacistName) {
+        return new ResponseEntity<>(pharmacistService.findByPharmacistName(pharmacistName), HttpStatus.OK);
+    }
 }

@@ -35,6 +35,7 @@ public class DoctorController {
     @PatchMapping("/{doctorId}")
     @Operation(summary = "Patch a doctor by ID", description = "Patch a single doctor by their ID.")
     public ResponseEntity<DoctorDto> patchDoctorById(@PathVariable UUID doctorId, @RequestBody DoctorDto doctor) {
+        System.out.println(doctorId + " " + doctor);
         return new ResponseEntity<>(doctorService.patchDoctorById(doctorId, doctor), HttpStatus.OK);
     }
     @DeleteMapping("/{doctorId}")
@@ -47,5 +48,10 @@ public class DoctorController {
     @Operation(summary = "Get all Doctors", description = "Return all Doctors.")
     public ResponseEntity<List<DoctorDto>> getAllDoctors() {
         return new ResponseEntity<>(doctorService.getAllDoctors(), HttpStatus.OK);
+    }
+    @GetMapping("/name/{doctorName}")
+    @Operation(summary = "Get a doctor by Name", description = "Get a single doctor by their Name.")
+    public ResponseEntity<List<DoctorDto>> getDoctorByName(@PathVariable String doctorName) {
+        return new ResponseEntity<>(doctorService.getDoctorByName(doctorName), HttpStatus.OK);
     }
 }

@@ -15,13 +15,20 @@ public class Pharmacist extends AuditData{
     @Id
     @UuidGenerator
     private UUID pharmacistId;
-    private String pharmacyName;
+    private String qualification;
+    private String licenseNumber;
+    private Integer experience;
     @Embedded
     private GeneralDetail generalDetail;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Prescription prescription;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ToString.Exclude
     private User user;
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "pharmacy_id", referencedColumnName = "pharmacyId")
+    private Pharmacy pharmacy;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id", referencedColumnName = "addressId")
     private Address address;

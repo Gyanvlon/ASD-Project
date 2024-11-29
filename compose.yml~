@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  db_service:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        interval: 2s
+        timeout: 20s
+        retries: 10
+
+    environment:
+      MYSQL_DATABASE: mrts
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+  MRTS_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: MRTS
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/springboot_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - db
+      - condition: service_healthy
+
+
+

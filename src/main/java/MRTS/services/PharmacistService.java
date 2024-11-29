@@ -12,6 +12,7 @@ public interface PharmacistService {
     PharmacistDto patchPharmacistById(UUID pharmacistId, PharmacistDto pharmacist);
     void deletePharmacistById(UUID pharmacistId);
     List<PharmacistDto> getAllPharmacists();
+    List<PharmacistDto> findByPharmacistName(String pharmacistName);
 }
 
 
