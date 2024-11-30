@@ -1,8 +1,6 @@
 package MRTS.controller;
 
 import MRTS.DTO.HospitalDto;
-import MRTS.domain.Hospital;
-import MRTS.repository.HospitalRepository;
 import MRTS.services.HospitalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,23 +22,18 @@ public class HospitalController {
 
     @GetMapping("/name/{hospitalName}")
     ResponseEntity <List<HospitalDto>> getHospitalByName(@PathVariable String hospitalName) {
-        return new ResponseEntity<List<HospitalDto>>(hospitalService.getHospitalByName(hospitalName), HttpStatus.OK);
+        return new ResponseEntity<>(hospitalService.getHospitalByName(hospitalName), HttpStatus.OK);
     }
     @PostMapping
     @Operation(summary = "Register Hospital", description = "Register Hospital")
     public ResponseEntity<HospitalDto> createHospital( @Valid @RequestBody HospitalDto hospitalDto) {
-        return new ResponseEntity<HospitalDto>(hospitalService.registerHospital(hospitalDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(hospitalService.registerHospital(hospitalDto), HttpStatus.CREATED);
     }
     @GetMapping
     @Operation(summary = "Get All Hospitals", description = "Get All Hospitals")
     public ResponseEntity<List<HospitalDto>> getAllHospitals() {
         return new ResponseEntity(hospitalService.getAllHospitals(), HttpStatus.OK);
     }
-//   @GetMapping("/doctorId")
-//    @Operation(summary = "Get Hospital by Doctor ID", description = "Get Hospital by Doctor ID")
-//    public ResponseEntity<HospitalDto> getHospitalByDoctorId(UUID doctorId) {
-//        return new ResponseEntity(hospitalService.getHospitalByDoctorId(doctorId), HttpStatus.OK);
-//    }
     @GetMapping("/{hospitalId}")
     @Operation(summary = "Get Hospital by ID", description = "Get Hospital by ID")
     public ResponseEntity<HospitalDto> getHospitalById(@PathVariable UUID hospitalId) {

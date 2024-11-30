@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -41,7 +42,7 @@ public class PrescriptionController {
     }
     @GetMapping
     @Operation(summary = "Get all Prescriptions", description = "Return all Prescriptions.")
-    public ResponseEntity<Iterable<PrescriptionDto>> getAllPrescriptions() {
+    public ResponseEntity<List<PrescriptionDto>> getAllPrescriptions() {
         return new ResponseEntity<>(prescriptionService.getAllPrescriptions(), HttpStatus.OK);
     }
     @DeleteMapping("/{prescriptionId}")
@@ -52,18 +53,18 @@ public class PrescriptionController {
     }
     @GetMapping("/patient/{patientId}")
     @Operation(summary = "Get all prescriptions by patient ID", description = "Get all prescriptions by patient ID.")
-    public ResponseEntity<Iterable<PrescriptionDto>> getPrescriptionsByPatientId(@PathVariable("patientId") UUID patientId) {
+    public ResponseEntity<List<PrescriptionDto>> getPrescriptionsByPatientId(@PathVariable("patientId") UUID patientId) {
         return new ResponseEntity<>(prescriptionService.getPrescriptionsByPatientId(patientId), HttpStatus.OK);
     }
     @GetMapping("/doctor/{doctorId}")
     @Operation(summary = "Get all prescriptions by doctor ID", description = "Get all prescriptions by doctor ID.")
-    public ResponseEntity<Iterable<PrescriptionDto>> getPrescriptionsByDoctorId(@PathVariable("doctorId") UUID doctorId) {
+    public ResponseEntity<List<PrescriptionDto>> getPrescriptionsByDoctorId(@PathVariable("doctorId") UUID doctorId) {
         return new ResponseEntity<>(prescriptionService.getPrescriptionsByDoctorId(doctorId), HttpStatus.OK);
     }
 
     @GetMapping("/pharmacist/{pharmacistId}")
     @Operation(summary = "Get all prescriptions by pharmacist ID", description = "Get all prescriptions by pharmacist ID.")
-    public ResponseEntity<Iterable<PrescriptionDto>> getPrescriptionsByPharmacistId(@PathVariable("pharmacistId") UUID pharmacistId) {
+    public ResponseEntity<List<PrescriptionDto>> getPrescriptionsByPharmacistId(@PathVariable("pharmacistId") UUID pharmacistId) {
         return new ResponseEntity<>(prescriptionService.getPrescriptionsByPharmacistId(pharmacistId), HttpStatus.OK);
     }
 }

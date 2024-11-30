@@ -31,7 +31,7 @@ public class LabController {
     }
     @GetMapping
     @Operation(summary = "Get all labs", description = "Get all labs.")
-    public ResponseEntity<Iterable<LabDto>> getAllLabs() {
+    public ResponseEntity<List<LabDto>> getAllLabs() {
         return ResponseEntity.ok(labService.getAllLabs());
     }
     @GetMapping("/name/{labName}")
