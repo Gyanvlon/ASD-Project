@@ -16,6 +16,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 @Service
@@ -32,20 +33,18 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         Prescription prescription = prescriptionRepository.findById(prescriptionId).orElseThrow(() -> new ResourceNotFoundException("Prescription not found with id: " + prescriptionId));
         return prescriptionMapper.toPrescriptionDto(prescription);
     }
-
     @Override
     public PrescriptionDto createPrescription(PrescriptionDto prescriptionDto) {
         Patient existingPatient = patientRepository.findById(prescriptionDto.getPatientId()).orElseThrow(() -> new ResourceNotFoundException("Patient not found with id: " + prescriptionDto.getPatientId()));
         Prescription prescription = prescriptionMapper.toPrescription(prescriptionDto);
         Pharmacist existingPharmacist = pharmacistRepository.findById(prescriptionDto.getPharmacistId()).orElseThrow(() -> new ResourceNotFoundException("Pharmacist not found with id: " + prescriptionDto.getPharmacistId()));
-        prescription.setPatient(existingPatient);
         prescription.setPharmacist(existingPharmacist);
+        prescription.setPatient(existingPatient);
         Doctor existingDoctor = doctorRepository.findById(prescriptionDto.getDoctorId()).orElseThrow(() -> new ResourceNotFoundException("Doctor not found with id: " + prescriptionDto.getDoctorId()));
         prescription.setDoctor(existingDoctor);
         Prescription savedPrescription = prescriptionRepository.save(prescription);
         return prescriptionMapper.toPrescriptionDto(savedPrescription);
     }
-
     @Override
     public PrescriptionDto updatePrescription(UUID prescriptionId, PrescriptionDto prescriptionDto) {
         Prescription existingPrescription = prescriptionRepository.findById(prescriptionId).orElseThrow(() -> new ResourceNotFoundException("Prescription not found with id: " + prescriptionId));
