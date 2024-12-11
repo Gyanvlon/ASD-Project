@@ -39,7 +39,7 @@ Track and view lab report provide by verified Medical Lab technician.
 https://github.com/Gyanvlon/PMRTS.git
 
 # back end
-https://github.com/Gyanvlon/ASD-Project.git
+https://github.com/Gyanvlon/PMRTS-BackEnd.git
 
 # Technologies Used
 - Frontend: HTML, CSS, TypeScript, Angular, Angular Material 
@@ -54,7 +54,7 @@ https://github.com/Gyanvlon/ASD-Project.git
 4. npm install
 5. open browser and go to http://localhost:4200
 5. ng serve
-6. git clone https://github.com/Gyanvlon/ASD-Project.git
+6. git clone https://github.com/Gyanvlon/PMRTS-BackEnd.git
 6. cd ../ASD-Project
 7. mvn spring-boot:run
 8. open browser and go to http://localhost:8090/swagger-ui.html
